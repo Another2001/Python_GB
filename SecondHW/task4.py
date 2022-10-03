@@ -1,22 +1,31 @@
-import random
-mylist = [int(i) for i in input(' Задайте список(каждый элемент через пробел ').split()]
-print (mylist)
-N = input('введите число повторений - ')
+N = input('Задайте кол-во элементов списка: ')
 while N.isdigit() == False:
-    print('введено не число! повторите попытку ввода!')
+    print('Введено не число! повторите попытку ввода!')
     N = input()
 else:
     N = int(N)
+    lis = list()
     for i in range(N):
-        ran = random.randint(1 , len(mylist))
-        t = mylist[ran]
-        ran1 = random.randint(1 , len(mylist))
-        m = mylist[ran1] 
-        while t == m:
-            ran = random.randint(1 , len(mylist))
-            t = mylist[ran]
-            ran1 = random.randint(1 , len(mylist))
-            m = mylist[ran1]  
-        else:
-            t , m = m , t
-            print (f"перемешанный список {mylist}")
+        lis.insert(i, input('Введите элемент списка --> '))
+    print(f"Готовый список: {lis}")
+    lis1 = list()
+    T = input('Введите кол-во перемешиваний : ')        # Можно было исп-ть "random. sample/shuffle" и сильно сократить
+    while T.isdigit() == False:                         # код, но я не знаю как они работают и попытался сделать что то свое
+        print('Введено не число! повторите попытку ввода!')
+        T = input()
+    else:
+        T = int(T)
+        lis1 = lis[1:N:2] + lis[0:N:2]
+        for index in range(T):
+            lis1 = lis1[1:N:3] + lis1[0:N:3] + lis1[2:N:3]
+        print(f"Перемешанный список: {lis1}")
+
+        #Задайте кол-во элементов списка: 5
+        #Введите элемент списка --> 11
+        #Введите элемент списка --> 22
+        #Введите элемент списка --> 33
+        #Введите элемент списка --> 44
+        #Введите элемент списка --> 55
+        #Готовый список: ['11', '22', '33', '44', '55']
+        #Введите кол-во перемешиваний : 5
+        #Перемешанный список: ['44', '55', '22', '33', '11']
