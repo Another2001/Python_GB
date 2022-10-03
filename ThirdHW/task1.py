@@ -1,9 +1,19 @@
-list = [2, 3, 5, 9, 3]
-sum = 0
-stri = ''
-for i in len(list + 1):
-    if (list[i] % 2 == 1):
-        sum += i
-        i = str(i)
-        stri += i + ", "
-print(f"на нечётных позициях элементы - {stri} ответ: {sum}")
+N = input('Задайте кол-во элементов списка: ')
+while N.isdigit() == False:
+    print('Введено не число! повторите попытку ввода!')
+    N = input()
+else:
+    stri = ''
+    sum = 0
+    N = int(N)
+    lis = list()
+    for i in range(N):
+        lis.insert(i, input('Введите элемент списка(число) --> '))
+        lis[i] = int(lis[i])
+        if (i-1) % 2 == 1:                #так визуальнее более правильно :)
+            stri += f" {lis[i]} , "
+            sum += lis[i]
+    print(f"Готовый список: {lis} , на нечётных позициях элементы - {stri} их сумма: {sum}")
+
+
+
