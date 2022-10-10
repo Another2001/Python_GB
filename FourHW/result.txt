@@ -1,0 +1,1 @@
+our polynome: 5*x**2-10*y
