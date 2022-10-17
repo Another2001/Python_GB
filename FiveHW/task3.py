@@ -1,11 +1,11 @@
 from CheGit import checkdigit
 print("*" * 13, " Крестики-нолики  ", "*" * 13)
-
+flag = False
 board = list(range(1, 10))
-rst_player = ''
-ond_player = ''
-win_combination = [[1, 2, 3], [4, 5, 6], [7, 8, 9], [
-    1, 4, 7], [2, 5, 8], [3, 6, 9], [1, 5, 9], [3, 5, 7]]
+count = 0
+rst_player = []
+ond_player = []
+win_combination = [123, 456, 789, 147, 258, 369, 159, 357]
 print("-" * 13)
 for i in range(3):
     print("|", board[0+i*3], "|", board[1+i*3], "|", board[2+i*3], "|")
@@ -22,7 +22,9 @@ if first_move == 1:
 else:
     player = curplayer[1]
 print(f"Отлично, вы выбрали '{player}'. Вы начинаете игру --> ")
+m = 0
 for i in board:
+    m += 1
     move = checkdigit(input('Введите номер клетки которую хотите заполнить: '))
     while move > len(board):
         move = checkdigit(
@@ -36,28 +38,53 @@ for i in board:
                 input('Bыбрано уже занятое поле, выберете другое: '))
         board[move-1] = player
     pred = player
-    if pred == 'X':
-        rst_player += str(move)
-        player = 'O'
-    elif pred == 'O':
-        ond_player += str(move)
-        player = 'X'
-    if i > 5:
+    if m % 2 == 0:
+        if pred == 'X':
+            rst_player += str(move)
+            player = 'O'
+        elif pred == 'O':
+            rst_player += str(move)
+            player = 'X'
+    else:
+        if pred == 'X':
+            ond_player += str(move)
+            player = 'O'
+        elif pred == 'O':
+            ond_player += str(move)
+            player = 'X'
+    rst_player.sort()
+    ond_player.sort()
+    if m >= 5:
         for comb in range(len(win_combination)):
             stri = ''
-            for j in range(len(win_combination[comb])):
-                stri += str(win_combination[comb])
-                print(stri)
-                if rst_player == stri:
-                    print(f"Победили {pred}, заняв следующую комбинацию:")
-                    exit(0)
-                elif ond_player == stri:
-                    print(f"Победили {pred}, заняв следующую комбинацию:")
-                    exit(0)
+            stri += str(win_combination[comb])
+            stri = list(stri)
+            stri.sort()
+            count = 0
+            for i in stri:
+                for j in rst_player:
+                    if i == j:
+                        count += 1
+                        if count == 3:
+                            print(
+                                f"Победили {pred}, заняв следующую комбинацию: {stri}\n")
+                            flag = True
+                            exit()
+            count = 0
+            for n in stri:
+                for k in ond_player:
+                    if n == k:
+                        count += 1
+                        if count == 3:
+                            print(
+                                f"Победили {pred}, заняв следующую комбинацию: {stri}\n")
+                            flag = True
+                            exit()
     for i in range(3):
         print("|", board[0+i*3], "|", board[1+i*3], "|", board[2+i*3], "|")
         print("-" * 13)
-
 print('||||||||||||||||||||||')
-print(f"rst_player -->   {rst_player}")
-print(f"ond_player -->   {ond_player}")
+if not flag:
+    print('Победила дружба!')
+print(f"точки первого игрока -->   {rst_player}")
+print(f"точки второго игрока -->   {ond_player}")
