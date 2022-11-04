@@ -1,6 +1,12 @@
-from user_interface import infotake as it
 from datetime import datetime as dt
 from time import time
+from data_provider import data_collection
+
+def data_collection_logger():
+    time = dt.now().strftime('%H:%M')
+    with open('phonebook.csv', 'a', encoding ='utf-8') as file:
+        file.write('{} --> {}\n'
+                    .format(time, data_collection()))
 
 # def fullname_logger():
 #     time = dt.now().strftime('%H:%M')
@@ -20,9 +26,3 @@ from time import time
 #     with open('phonebook.csv', 'a') as file:
 #         file.write('{};description;{}\n'
 #                     .format(time, pnv))
-
-def infotake_logger():
-    time = dt.now().strftime('%H:%M')
-    with open('phonebook.csv', 'a') as file:
-        file.write('{};-->;{}\n'
-                    .format(time, it()))

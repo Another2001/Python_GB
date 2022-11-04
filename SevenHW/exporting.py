@@ -1,9 +1,14 @@
-from datetime import datetime as dt
 def exporting():
-    time = dt.now().strftime('%H:%M')
+    file1 =  open('file_exp.csv' , 'a', encoding='utf-8') 
     with open('phonebook.csv', 'r', encoding='utf-8') as file:
-        file = [line.split('\n') for line in file]
-    with open('file_exp.csv' , 'a', encoding='utf-8') as file1:
-        file1.write(f"\n{time};-->;{file}")
+        for line in file:
+            if len(line) != 1:
+                f = f + line
+                file1.write(f"{line}")
 
-        
+def take_text():
+    f = []
+    with open('phonebook.csv', 'r', encoding='utf-8') as file:        
+        for line in file:
+            f.append(line)
+    return f
