@@ -16,4 +16,5 @@ def new_table(name,rows):
 
 def rows_of_table(name):
     f = open(f'database/{name}.csv', 'r')
-    print(list(f.read().split('                         |')))
+    p = f.readlines()
+    print(list(p[0].replace('\n','').split('                         |')))
