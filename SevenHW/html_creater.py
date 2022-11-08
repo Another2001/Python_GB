@@ -1,6 +1,4 @@
 from exporting import  take_text
-from importing import importing
-
 def createhtml():
     lis = take_text()
     style = 'style="font-size:24px;margin:0"'
