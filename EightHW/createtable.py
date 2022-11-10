@@ -6,13 +6,11 @@
 #       return  input('Описание(необязательно): ')
 # def data_collection():
 #     return f"{get_fullname()} , {get_phone_number()}, {get_description()}"
-
+import os
 def rows_of_table(name):
     f = open(f'database/{name}.csv', 'r')
     p = f.readlines()
     m = list(p[0].replace('\n',"").split('                         |'))
-    print(m[0:-1])
-    # print(m[0]) работает
     return m
 
 def new_table(name,rows):
@@ -32,5 +30,12 @@ def add_row(name):
     f.close
     f = open(f'database/{name}.csv', 'w')
     for i in line_of_1:
-        f.writelines(f"{i}                         |")
+        if i == line_of_1[-1]:
+            f.writelines(f"{i}")
+        else:
+            f.writelines(f"{i}                         |")
+    f.write("\n")
     f.writelines(lines[1:])
+
+def del_table(name):
+    os.remove(f"\database\{name}.csv")

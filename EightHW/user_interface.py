@@ -1,10 +1,6 @@
 from view import show_table
-from createtable import rows_of_table , add_row, new_table 
-# from view import show_table
-# new_table(input('Имя создаваемой таблицы: '),int(input('Введите количество столбиков: ')))
-# name = input("Какую таблицу вывести? укажите имя: ")
-# show_table(name)
-# rows_of_table(name)
+from createtable import *
+from CRUD import *
 
 def user_interface():
     print("**** Добро пожаловать в базу данных! *****\n")
@@ -21,8 +17,9 @@ def user_interface():
             print("7 - Удалить запись в таблице")
             print("8 - Новая таблица")
             print("9 - Завершить работу")
+            print("10 - Удалить таблицу")
             choice = input()
-            if choice not in ["1", "2", "3", "4", "5", "6", "7", "8", "9"]:
+            if choice not in ["1", "2", "3", "4", "5", "6", "7", "8", "9","10"]:
                 print("!!Выбран неверный пункт меню!!\nПопробуйте ещё раз")
                 continue
             elif choice == "1":
@@ -33,14 +30,27 @@ def user_interface():
                 break
             elif choice == "3":
                 show_table(input('Какую таблицу выводим? --> '))
+                break
             elif choice == "4":
-                show_table(input('По какому столбику делаем поиск? --> '))
+                selecting(input('Укажите таблицу для выборки --> '))
+                break
             elif choice == "5":
-                name_table_5 = input('В какой таблице будем добавлять запись? -->')
-                new_cols(name_table_5)
+                name = input('В какой таблице будем добавлять запись? -->')
+                new_cols(name)
+                break
             elif choice == "6":
-                show_table(input('Какую таблицу выводим? --> '))
+                name = input('В какой таблице будем изменять запись? -->')
+                upd_col(name)
+                break
+            elif choice == "7":
+                name = input('В какой таблице будем удалять запись? -->')
+                del_col(name)
+                break
+            elif choice == "8":
+                new_table(input('Задайте имя таблицы --> '),input('\nКоличество столбцов -->'))
+                break
+            elif choice == "10":
+                del_table(input('Какую таблицу хотите удалить? --> '))
             elif choice == "9": 
                 flag = False
                 exit
-user_interface()
