@@ -2,7 +2,7 @@ from telegram import Update
 from telegram.ext import Updater, CommandHandler, CallbackContext
 from bot_commands import *
 
-updater = Updater('5457327978:AAElZlvnGDyuL2kzxyOn-Dc849ow34LxPlI')
+updater = Updater('5712451896:AAEwlba3PjwPpC0EXvaGYIJH8nDM-E2fNnM')
 
 updater.dispatcher.add_handler(CommandHandler('hi', hi_command))
 updater.dispatcher.add_handler(CommandHandler('time', time_command))
