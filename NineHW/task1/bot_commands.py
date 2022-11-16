@@ -54,3 +54,4 @@ def delete_command(update: Update, context: CallbackContext):
     db_list = IO_json.delete_from_json(path)
     update.message.reply_text(db_list)
     log()
+    
